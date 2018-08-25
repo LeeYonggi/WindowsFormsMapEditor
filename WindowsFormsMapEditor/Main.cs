@@ -168,22 +168,35 @@ namespace WindowsFormsMapEditor
 
         private void openOToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
+            openFileDialog.Filter = "MSF files (*.MSF)|*.MSF|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = "../../../Image/";
+
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader streamReader = new StreamReader(openFileDialog.FileName);
+                string a = "a";
+                size = InputManager.GetT.GetStreamPoint(streamReader, ref a);
+                TileManager.GetT.SetTileScale(size);
+                streamReader.Close();
+            }
         }
 
         private void saveSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.Filter  = "Text files" + "(*" + filestyle + ")" + "|*" + filestyle +"|All files (*.*)|*.*";
+            saveFileDialog.Filter  = "MSF files (*.MSF)|*.MSF|All files(*.*)|*.*";
             saveFileDialog.InitialDirectory = "../../../Image/";
-            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName);
-                TileManager.GetT.SaveFile(saveFileDialog.FileName, streamWriter);
+                streamWriter.WriteLine(size + "/");
+                TileManager.GetT.SaveFile(saveFileDialog.FileName + filestyle, streamWriter);
                 streamWriter.Close();
             }
         }
