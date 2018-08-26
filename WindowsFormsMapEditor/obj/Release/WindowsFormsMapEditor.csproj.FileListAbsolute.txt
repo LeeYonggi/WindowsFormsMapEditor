@@ -1,0 +1,17 @@
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\WindowsFormsMapEditor.exe.config
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\WindowsFormsMapEditor.exe
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\WindowsFormsMapEditor.pdb
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.Direct3D.dll
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.Direct3DX.dll
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.dll
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.xml
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.Direct3D.xml
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\bin\Release\Microsoft.DirectX.Direct3DX.xml
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.csprojAssemblyReference.cache
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.Main.resources
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.Properties.Resources.resources
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.csproj.GenerateResource.cache
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.csproj.CoreCompileInputs.cache
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.csproj.CopyComplete
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.exe
+H:\Programming\PJ\WindowsFormsMapEditor\WindowsFormsMapEditor\obj\Release\WindowsFormsMapEditor.pdb
