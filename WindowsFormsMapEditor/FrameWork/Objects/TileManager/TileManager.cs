@@ -7,6 +7,7 @@ using System.Drawing;
 using Framework;
 using WindowsFormsMapEditor.FrameWork.Objects.Tile;
 using Microsoft.DirectX.Direct3D;
+using WindowsFormsMapEditor;
 
 public class TileManager : Singleton<TileManager>
 {
@@ -118,6 +119,14 @@ public class TileManager : Singleton<TileManager>
         {
             if (iter.IsCollision(iter.Size, iter.GetMousePos()) && nowSelectTile != null)
                 iter.SetSpriteTile(nowSelectTile, nowSelectTileName);
+        }
+    }
+    public void AddTile(Point position, string tileName)
+    {
+        foreach (var iter in l_tiles)
+        {
+            if (iter.Position == position)
+                iter.SetSpriteTile("../../../Image/Tiles/" + tileName, tileName);
         }
     }
     public void DestroyClick()

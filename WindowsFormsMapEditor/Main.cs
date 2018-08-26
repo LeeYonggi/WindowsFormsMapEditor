@@ -176,9 +176,17 @@ namespace WindowsFormsMapEditor
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamReader streamReader = new StreamReader(openFileDialog.FileName);
-                string a = "a";
-                size = InputManager.GetT.GetStreamPoint(streamReader, ref a);
+                size = InputManager.GetT.GetStreamPoint(streamReader.ReadLine());
                 TileManager.GetT.SetTileScale(size);
+
+                while (!streamReader.EndOfStream)
+                {
+                    string name = "";
+                    Point point = InputManager.GetT.GetStreamPoint(streamReader, ref name);
+                    TileManager.GetT.AddTile(point, name);
+                    name = "";
+                }
+
                 streamReader.Close();
             }
         }

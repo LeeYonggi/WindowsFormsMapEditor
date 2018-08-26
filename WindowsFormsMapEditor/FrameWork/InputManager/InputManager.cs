@@ -12,13 +12,13 @@ namespace Framework
 {
     public class InputManager : Singleton<InputManager>
     {
-        public Point GetStreamPoint(StreamReader streamReader, ref string tileName)
+        public Point GetStreamPoint(string str)
         {
             Point point = new Point(0, 0);
             int x = 0;
             int y = 0;
 
-            string line = streamReader.ReadLine();
+            string line = str;
             for(int i = 0; i < line.Length; i++)
             {
                 if(string.Compare(line[i].ToString(), "X") == 0)
@@ -49,6 +49,31 @@ namespace Framework
                 }
                 if (string.Compare(line[i].ToString(), "/") == 0) break;
             }
+            return point;
+        }
+        public Point GetStreamPoint(StreamReader streamReader, ref string tileName)
+        {
+            Point point = new Point(0, 0);
+
+            string line = streamReader.ReadLine();
+            for(int i = 0; i < line.Length; i++)
+            {
+                if(string.Compare(line[i].ToString(), ",") == 0)
+                {
+                    
+                    break;
+                }
+                else
+                {
+                    tileName += line[i];
+                }
+            }
+            string pointLine = "";
+            for(int i = tileName.Length; i < line.Length; i++)
+            {
+                pointLine += line[i].ToString();
+            }
+            point = GetStreamPoint(pointLine);
             return point;
         }
     }
