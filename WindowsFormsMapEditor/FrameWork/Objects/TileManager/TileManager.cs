@@ -17,7 +17,6 @@ public class TileManager : Singleton<TileManager>
     private string nowSelectTileName = null;
     private int size = 0;
 
-    #region Factory Function
     public void Init()
     {
         for(int i = 0; i < 405; i++)
@@ -31,6 +30,7 @@ public class TileManager : Singleton<TileManager>
             iter.Init();
         }
     }
+    #region Factory Function
     public void SideInit()
     {
         foreach (var iter in s_tiles)
@@ -75,15 +75,29 @@ public class TileManager : Singleton<TileManager>
     }
     #endregion
 
-    public void SetTileScale(Point size)
+    public void ChageMapSize(Point mapSize, Point size)
+    {
+        l_tiles.Clear();
+        for(int i = 0; i < mapSize.X * mapSize.Y; i++)
+        {
+            Tile tile = new Tile();
+            tile.Position = new Point((i % mapSize.X) * size.X, (i / mapSize.X) * size.Y);
+            l_tiles.Add(tile);
+        }
+        foreach (var iter in l_tiles)
+        {
+            iter.Init();
+        }
+    }
+    public void SetTileScale(Point mapSize, Point size)
     {
         foreach (var iter in l_tiles)
         {
             iter.Size = size;
         }
-        for (int i = 0; i < 405; i++)
+        for (int i = 0; i < mapSize.X * mapSize.Y; i++)
         {
-            l_tiles[i].Position = new Point((i % 27) * size.X, (i / 27) * size.Y);
+            l_tiles[i].Position = new Point((i % mapSize.X) * size.X, (i / mapSize.X) * size.Y);
         }
     }
     public void AddSelectTile(Texture tex, string str, string name)

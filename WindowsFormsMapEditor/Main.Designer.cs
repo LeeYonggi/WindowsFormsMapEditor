@@ -32,6 +32,9 @@
             this.Panel_Render = new System.Windows.Forms.Panel();
             this.Control = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MapScaleY = new System.Windows.Forms.TextBox();
+            this.MapScaleX = new System.Windows.Forms.TextBox();
+            this.MapScale = new System.Windows.Forms.Label();
             this.Tiles_Panel = new System.Windows.Forms.Panel();
             this.SubControl = new System.Windows.Forms.Button();
             this.sizeChange = new System.Windows.Forms.Button();
@@ -47,6 +50,7 @@
             this.openOToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.autoCutAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog_Image = new System.Windows.Forms.OpenFileDialog();
+            this.MapSizeChange = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.Panel_Render.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -96,6 +100,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.MapSizeChange);
+            this.panel1.Controls.Add(this.MapScaleY);
+            this.panel1.Controls.Add(this.MapScaleX);
+            this.panel1.Controls.Add(this.MapScale);
             this.panel1.Controls.Add(this.Tiles_Panel);
             this.panel1.Controls.Add(this.sizeChange);
             this.panel1.Controls.Add(this.TileScale);
@@ -107,6 +115,37 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(281, 834);
             this.panel1.TabIndex = 1;
+            // 
+            // MapScaleY
+            // 
+            this.MapScaleY.AcceptsReturn = true;
+            this.MapScaleY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MapScaleY.Location = new System.Drawing.Point(193, 106);
+            this.MapScaleY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MapScaleY.Name = "MapScaleY";
+            this.MapScaleY.Size = new System.Drawing.Size(86, 25);
+            this.MapScaleY.TabIndex = 8;
+            this.MapScaleY.TextChanged += new System.EventHandler(this.MapScaleY_TextChanged);
+            // 
+            // MapScaleX
+            // 
+            this.MapScaleX.AcceptsReturn = true;
+            this.MapScaleX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MapScaleX.Location = new System.Drawing.Point(101, 106);
+            this.MapScaleX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MapScaleX.Name = "MapScaleX";
+            this.MapScaleX.Size = new System.Drawing.Size(86, 25);
+            this.MapScaleX.TabIndex = 7;
+            this.MapScaleX.TextChanged += new System.EventHandler(this.MapScaleX_TextChanged);
+            // 
+            // MapScale
+            // 
+            this.MapScale.AutoSize = true;
+            this.MapScale.Location = new System.Drawing.Point(12, 106);
+            this.MapScale.Name = "MapScale";
+            this.MapScale.Size = new System.Drawing.Size(82, 15);
+            this.MapScale.TabIndex = 6;
+            this.MapScale.Text = "MapScale :";
             // 
             // Tiles_Panel
             // 
@@ -131,7 +170,7 @@
             // 
             // sizeChange
             // 
-            this.sizeChange.Location = new System.Drawing.Point(87, 62);
+            this.sizeChange.Location = new System.Drawing.Point(40, 60);
             this.sizeChange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sizeChange.Name = "sizeChange";
             this.sizeChange.Size = new System.Drawing.Size(101, 29);
@@ -196,20 +235,21 @@
             // newCreateNToolStripMenuItem
             // 
             this.newCreateNToolStripMenuItem.Name = "newCreateNToolStripMenuItem";
-            this.newCreateNToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.newCreateNToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.newCreateNToolStripMenuItem.Text = "New Create (N)";
+            this.newCreateNToolStripMenuItem.Click += new System.EventHandler(this.newCreateNToolStripMenuItem_Click);
             // 
             // openOToolStripMenuItem
             // 
             this.openOToolStripMenuItem.Name = "openOToolStripMenuItem";
-            this.openOToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.openOToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.openOToolStripMenuItem.Text = "Open (O)";
             this.openOToolStripMenuItem.Click += new System.EventHandler(this.openOToolStripMenuItem_Click);
             // 
             // saveSToolStripMenuItem
             // 
             this.saveSToolStripMenuItem.Name = "saveSToolStripMenuItem";
-            this.saveSToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.saveSToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.saveSToolStripMenuItem.Text = "Save (S)";
             this.saveSToolStripMenuItem.Click += new System.EventHandler(this.saveSToolStripMenuItem_Click);
             // 
@@ -225,20 +265,31 @@
             // openOToolStripMenuItem1
             // 
             this.openOToolStripMenuItem1.Name = "openOToolStripMenuItem1";
-            this.openOToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.openOToolStripMenuItem1.Size = new System.Drawing.Size(166, 26);
             this.openOToolStripMenuItem1.Text = "Open (O)";
             this.openOToolStripMenuItem1.Click += new System.EventHandler(this.openOToolStripMenuItem1_Click);
             // 
             // autoCutAToolStripMenuItem
             // 
             this.autoCutAToolStripMenuItem.Name = "autoCutAToolStripMenuItem";
-            this.autoCutAToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.autoCutAToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.autoCutAToolStripMenuItem.Text = "AutoCut (A)";
             // 
             // openFileDialog_Image
             // 
             this.openFileDialog_Image.FileName = "openFileDialog_Image";
             this.openFileDialog_Image.Filter = "이미지 파일|*.jpg;*.png;*.gif;*.bmp|모든 파일|*.*";
+            // 
+            // MapSizeChange
+            // 
+            this.MapSizeChange.Location = new System.Drawing.Point(147, 60);
+            this.MapSizeChange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MapSizeChange.Name = "MapSizeChange";
+            this.MapSizeChange.Size = new System.Drawing.Size(131, 29);
+            this.MapSizeChange.TabIndex = 9;
+            this.MapSizeChange.Text = "MapSizeChange";
+            this.MapSizeChange.UseVisualStyleBackColor = true;
+            this.MapSizeChange.Click += new System.EventHandler(this.MapSizeChange_Click);
             // 
             // Main
             // 
@@ -284,5 +335,9 @@
         private System.Windows.Forms.Button Control;
         private System.Windows.Forms.Panel Tiles_Panel;
         private System.Windows.Forms.Button SubControl;
+        private System.Windows.Forms.Label MapScale;
+        private System.Windows.Forms.TextBox MapScaleY;
+        private System.Windows.Forms.TextBox MapScaleX;
+        private System.Windows.Forms.Button MapSizeChange;
     }
 }

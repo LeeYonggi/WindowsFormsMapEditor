@@ -16,9 +16,11 @@ namespace WindowsFormsMapEditor
 {
     public partial class Main : Form
     {
-        private Point size = new Point(0, 0);
+        private Point size = new Point(48, 48);
         private string tilesPath = "../../../Image/Tiles";
         private string filestyle = ".MSF";
+
+        private Point mapSize = new Point(27, 15);
 
         public Main()
         {
@@ -145,7 +147,7 @@ namespace WindowsFormsMapEditor
 
         private void sizeChange_Click(object sender, EventArgs e)
         {
-            TileManager.GetT.SetTileScale(size);
+            TileManager.GetT.SetTileScale(mapSize, size);
         }
 
         private void tilesizeY_TextChanged(object sender, EventArgs e)
@@ -177,7 +179,7 @@ namespace WindowsFormsMapEditor
             {
                 StreamReader streamReader = new StreamReader(openFileDialog.FileName);
                 size = InputManager.GetT.GetStreamPoint(streamReader.ReadLine());
-                TileManager.GetT.SetTileScale(size);
+                TileManager.GetT.SetTileScale(mapSize, size);
 
                 while (!streamReader.EndOfStream)
                 {
@@ -212,6 +214,39 @@ namespace WindowsFormsMapEditor
         private void openOToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void newCreateNToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void MapScaleX_TextChanged(object sender, EventArgs e)
+        {
+            int x = 0;
+            if (Int32.TryParse(this.MapScaleX.Text, out x))
+            {
+                mapSize.X = x;
+            }
+        }
+
+        private void MapScaleY_TextChanged(object sender, EventArgs e)
+        {
+            int y = 0;
+            if (Int32.TryParse(this.MapScaleY.Text, out y))
+            {
+                mapSize.Y = y;
+            }
+        }
+
+        private void MapSizeChange_Click(object sender, EventArgs e)
+        {
+            TileManager.GetT.ChageMapSize(mapSize, size);
         }
     }
 }
