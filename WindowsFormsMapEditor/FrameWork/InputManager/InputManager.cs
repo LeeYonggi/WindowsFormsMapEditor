@@ -51,16 +51,31 @@ namespace Framework
             }
             return point;
         }
-        public Point GetStreamPoint(StreamReader streamReader, ref string tileName)
+        public Point GetStreamPoint(StreamReader streamReader, ref string tileName, ref string tileState)
         {
             Point point = new Point(0, 0);
 
             string line = streamReader.ReadLine();
-            for(int i = 0; i < line.Length; i++)
+            int i = 0;
+            for (i = 0; i < line.Length; i++)
+            {
+                if (string.Compare(line[i].ToString(), ",") == 0)
+                {
+
+                    i++;
+                    break;
+                }
+                else
+                {
+                    tileState += line[i];
+                }
+            }
+            for ( ; i < line.Length; i++)
             {
                 if(string.Compare(line[i].ToString(), ",") == 0)
                 {
                     
+                    i++;
                     break;
                 }
                 else
@@ -69,7 +84,7 @@ namespace Framework
                 }
             }
             string pointLine = "";
-            for(int i = tileName.Length; i < line.Length; i++)
+            for( ; i < line.Length; i++)
             {
                 pointLine += line[i].ToString();
             }

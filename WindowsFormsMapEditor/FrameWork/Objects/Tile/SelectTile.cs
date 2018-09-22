@@ -15,10 +15,12 @@ namespace WindowsFormsMapEditor.FrameWork.Objects.Tile
         private string route = null;
         private string name = null;
         private Point size = new Point(0, 0);
+        private string spriteState = null;
         public Point GetSize { get => size; }
 
         public string Route { get => route; set => route = value; }
         public string Name { get => name; set => name = value; }
+        public string SpriteState { get => spriteState; set => spriteState = value; }
 
         public override void Init()
         {

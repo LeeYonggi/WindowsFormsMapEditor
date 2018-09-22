@@ -18,6 +18,7 @@ namespace WindowsFormsMapEditor
     {
         private Point size = new Point(48, 48);
         private string tilesPath = "../../../Image/Tiles";
+        private string monsterPath = "../../../Image/Monster";
         private string filestyle = ".MSF";
 
         private Point mapSize = new Point(27, 15);
@@ -37,9 +38,16 @@ namespace WindowsFormsMapEditor
             string[] files = GetFileNames(tilesPath, "*.png");
             for(int i = 0; i < files.Length; i++)
             {
-                TileManager.GetT.AddSelectTile(
+                TileManager.GetT.AddSelectTile("Tile", 
                     ResourceManager.GetT.GetTexture(tilesPath + "/" + files[i], MainGame.GetT.tileDX.Dx_device),
                     tilesPath + "/" + files[i], files[i]);
+            }
+            string[] m_files = GetFileNames(monsterPath, "*.png");
+            for (int i = 0; i < m_files.Length; i++)
+            {
+                TileManager.GetT.AddSelectTile("Monster",
+                    ResourceManager.GetT.GetTexture(monsterPath + "/" + m_files[i], MainGame.GetT.tileDX.Dx_device),
+                    monsterPath + "/" + m_files[i], m_files[i]);
             }
         }
 
@@ -184,8 +192,9 @@ namespace WindowsFormsMapEditor
                 while (!streamReader.EndOfStream)
                 {
                     string name = "";
-                    Point point = InputManager.GetT.GetStreamPoint(streamReader, ref name);
-                    TileManager.GetT.AddTile(point, name);
+                    string tileState = "";
+                    Point point = InputManager.GetT.GetStreamPoint(streamReader, ref name, ref tileState);
+                    TileManager.GetT.AddTile(point, name, tileState);
                     name = "";
                 }
 
@@ -213,7 +222,27 @@ namespace WindowsFormsMapEditor
 
         private void openOToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string state = "Monster";
+                TileManager.GetT.AddSelectTile(state, ResourceManager.GetT.GetTexture(
+                    openFileDialog.FileName, MainGame.GetT.tileDX.Dx_device), 
+                    openFileDialog.FileName, openFileDialog.SafeFileName);
+            }
+        }
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string state = "Tile";
+                TileManager.GetT.AddSelectTile(state, ResourceManager.GetT.GetTexture(
+                    openFileDialog.FileName, MainGame.GetT.tileDX.Dx_device),
+                    openFileDialog.FileName, openFileDialog.SafeFileName);
+            }
         }
 
         private void newCreateNToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,5 +277,6 @@ namespace WindowsFormsMapEditor
         {
             TileManager.GetT.ChageMapSize(mapSize, size);
         }
+
     }
 }

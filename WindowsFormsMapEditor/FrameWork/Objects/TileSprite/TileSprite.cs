@@ -10,11 +10,13 @@ using System.IO;
 public class TileSprite : GameObject
 {
     private string spriteName = null;
+    private string spriteState = null;
 
     public string SpriteName { get => spriteName; set => spriteName = value; }
     private Point size = new Point(48, 48);
 
     public Point Size { get => size; set => size = value; }
+    public string SpriteState { get => spriteState; set => spriteState = value; }
 
     public override void Update()
     {
@@ -31,6 +33,6 @@ public class TileSprite : GameObject
 
     public void InputFile(string path, StreamWriter sw)
     {
-        sw.WriteLine(SpriteName.ToString() + "," + transform.position.ToString() + "/");
+        sw.WriteLine(spriteState + "," + SpriteName.ToString() + "," + transform.position.ToString() + "/");
     }
 }

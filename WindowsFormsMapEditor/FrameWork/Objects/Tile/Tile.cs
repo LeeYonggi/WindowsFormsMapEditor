@@ -60,7 +60,7 @@ public class Tile : GameObject
 
     }
 
-    public void SetSpriteTile(string route, string name)
+    public void SetSpriteTile(string route, string name, string tileState)
     {
         for (int i = 0; i < tileSprites.Count; i++)
         {
@@ -70,6 +70,7 @@ public class Tile : GameObject
         TileSprite tileSprite = new TileSprite();
         tileSprite.Texture = ResourceManager.GetT.GetTexture(route, MainGame.GetT.mainDX.Dx_device);
         tileSprite.SpriteName = name;
+        tileSprite.SpriteState = tileState;
         Image image = new Bitmap(route);
         tileSprite.Size = new Point(image.Width, image.Height);
         tileSprites.Add(tileSprite);

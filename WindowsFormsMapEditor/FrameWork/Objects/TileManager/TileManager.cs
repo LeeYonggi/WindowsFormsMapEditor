@@ -15,6 +15,7 @@ public class TileManager : Singleton<TileManager>
     private List<SelectTile> s_tiles = new List<SelectTile>();
     private string nowSelectTile = null;
     private string nowSelectTileName = null;
+    private string nowSelectTileState = null;
     private int size = 0;
 
     public void Init()
@@ -100,14 +101,15 @@ public class TileManager : Singleton<TileManager>
             l_tiles[i].Position = new Point((i % mapSize.X) * size.X, (i / mapSize.X) * size.Y);
         }
     }
-    public void AddSelectTile(Texture tex, string str, string name)
+    public void AddSelectTile(string tileState, Texture tex, string str, string name)
     {
         SelectTile _tile = new SelectTile();
         _tile.Texture = tex;
         _tile.Route = str;
         _tile.Name = name;
         _tile.ChangeSize();
-        if(size != 0)
+        _tile.SpriteState = tileState;
+        if (size != 0)
         {
             Point point = s_tiles[size - 1].Position;
             point.Y += s_tiles[size - 1].GetSize.Y;
@@ -124,6 +126,7 @@ public class TileManager : Singleton<TileManager>
             {
                 nowSelectTile = iter.Route;
                 nowSelectTileName = iter.Name;
+                nowSelectTileState = iter.SpriteState;
             }
         }
     }
@@ -132,15 +135,15 @@ public class TileManager : Singleton<TileManager>
         foreach(var iter in l_tiles)
         {
             if (iter.IsCollision(iter.Size, iter.GetMousePos()) && nowSelectTile != null)
-                iter.SetSpriteTile(nowSelectTile, nowSelectTileName);
+                iter.SetSpriteTile(nowSelectTile, nowSelectTileName, nowSelectTileState);
         }
     }
-    public void AddTile(Point position, string tileName)
+    public void AddTile(Point position, string tileName, string tileState)
     {
         foreach (var iter in l_tiles)
         {
             if (iter.Position == position)
-                iter.SetSpriteTile("../../../Image/Tiles/" + tileName, tileName);
+                iter.SetSpriteTile("../../../Image/Tiles/" + tileName, tileName, tileState);
         }
     }
     public void DestroyClick()
