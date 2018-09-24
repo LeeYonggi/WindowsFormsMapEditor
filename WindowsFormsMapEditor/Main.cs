@@ -23,6 +23,9 @@ namespace WindowsFormsMapEditor
 
         private Point mapSize = new Point(27, 15);
 
+        private Point colliderPos = new Point(0, 0);
+        private Point colliderSize = new Point(0, 0);
+
         public Main()
         {
             InitializeComponent();
@@ -35,6 +38,9 @@ namespace WindowsFormsMapEditor
 
         private void Main_Load(object sender, EventArgs e)
         {
+            TileManager.GetT.AddSelectTile("Collider",
+                    ResourceManager.GetT.GetTexture("../../../Image/tileCollider.png", MainGame.GetT.tileDX.Dx_device),
+                    "../../../Image/tileCollider.png", "tileCollider.png");
             string[] files = GetFileNames(tilesPath, "*.png");
             for(int i = 0; i < files.Length; i++)
             {
@@ -278,5 +284,45 @@ namespace WindowsFormsMapEditor
             TileManager.GetT.ChageMapSize(mapSize, size);
         }
 
+        private void ColliderPosX_TextChanged(object sender, EventArgs e)
+        {
+            int x = 0;
+            if (Int32.TryParse(this.ColliderPosX.Text, out x))
+            {
+                colliderPos.X = x;
+            }
+        }
+
+        private void ColliderPosY_TextChanged(object sender, EventArgs e)
+        {
+            int y = 0;
+            if (Int32.TryParse(this.ColliderPosY.Text, out y))
+            {
+                colliderPos.Y = y;
+            }
+        }
+
+        private void ColliderSizeX_TextChanged(object sender, EventArgs e)
+        {
+            int x = 0;
+            if (Int32.TryParse(this.ColliderSizeX.Text, out x))
+            {
+                colliderSize.X = x;
+            }
+        }
+
+        private void ColliderSizeY_TextChanged(object sender, EventArgs e)
+        {
+            int y = 0;
+            if (Int32.TryParse(this.ColliderSizeY.Text, out y))
+            {
+                colliderSize.Y = y;
+            }
+        }
+
+        private void ColliderChange_Click(object sender, EventArgs e)
+        {
+            TileManager.GetT.ChangeColliderTransform(colliderPos, colliderSize);
+        }
     }
 }

@@ -18,6 +18,7 @@ public class Tile : GameObject
     public Point Size { get => size; set => size = value; }
 
     private List<TileSprite> tileSprites = new List<TileSprite>();
+    private TileSprite tileCollider = null;
 
     override public void Init()
     {
@@ -54,18 +55,28 @@ public class Tile : GameObject
         {
             iter.Render(Rectangle.Empty, Rectangle.Empty, transform.rotationCenter, 0, transform.position, color);
         }
+        if (tileCollider != null)
+        {
+            Point colliderPoint = new Point((int)((tileCollider.Position.X + ScrollManager.GetT.MainScrollPoint.X) / (float)((float)tileCollider.Size.X / 48.0f)),
+               (int)((tileCollider.Position.Y + ScrollManager.GetT.MainScrollPoint.Y) / (float)((float)tileCollider.Size.Y / 48.0f)));
+
+            MainGame.GetT.mainDX.Dx_Sprite.Draw2D(tileCollider.Texture, Rectangle.Empty, new Rectangle(0, 0, tileCollider.Size.X, tileCollider.Size.Y),
+            transform.rotationCenter, 0, colliderPoint, color);
+            //tileCollider.Render(Rectangle.Empty, new Rectangle(0, 0, tileCollider.Size.X, tileCollider.Size.Y),
+            //    transform.rotationCenter, 0, colliderPoint, color);
+        }
     }
     override public void Release()
     {
 
     }
 
-    public void SetSpriteTile(string route, string name, string tileState)
+    public TileSprite SetSpriteTile(string route, string name, string tileState)
     {
         for (int i = 0; i < tileSprites.Count; i++)
         {
             if (tileSprites[i].SpriteName == name)
-                return;
+                return tileCollider;
         }
         TileSprite tileSprite = new TileSprite();
         tileSprite.Texture = ResourceManager.GetT.GetTexture(route, MainGame.GetT.mainDX.Dx_device);
@@ -73,10 +84,20 @@ public class Tile : GameObject
         tileSprite.SpriteState = tileState;
         Image image = new Bitmap(route);
         tileSprite.Size = new Point(image.Width, image.Height);
-        tileSprites.Add(tileSprite);
+        if(name == "tileCollider.png")
+        {
+            tileSprite.Position = transform.position;
+            tileCollider = tileSprite;
+            tileCollider.Size = TileManager.GetT.ColliderSize;
+            return tileSprite;
+        }
+        else
+            tileSprites.Add(tileSprite);
+        return null;
     }
     public void DestroySpriteTile()
     {
+        tileCollider = null;
         tileSprites.Clear();
     }
 
@@ -86,5 +107,7 @@ public class Tile : GameObject
         {
             iter.InputFile(path, streamWriter);
         }
+        if(tileCollider != null)
+            tileCollider.ColliderInputFile(streamWriter);
     }
 }

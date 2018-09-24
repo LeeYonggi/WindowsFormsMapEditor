@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
 
 using Framework;
 using Framework.Main;
@@ -28,11 +30,16 @@ public class TileSprite : GameObject
         Point _point = new Point(point.X + ScrollManager.GetT.MainScrollPoint.X, point.Y + ScrollManager.GetT.MainScrollPoint.Y);
         MainGame.GetT.mainDX.Dx_Sprite.Draw2D(texture, rectangle, size, rotationCenter, angle, _point, color);
         transform.position = point;
+
         base.Render();
     }
 
     public void InputFile(string path, StreamWriter sw)
     {
         sw.WriteLine(spriteState + "," + SpriteName.ToString() + "," + transform.position.ToString() + "/");
+    }
+    public void ColliderInputFile(StreamWriter sw)
+    {
+        sw.WriteLine(spriteState + "," + transform.position.ToString() + "," + Size + "/");
     }
 }

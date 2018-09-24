@@ -30,7 +30,14 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Panel_Render = new System.Windows.Forms.Panel();
+            this.ColliderChange = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ColliderPosY = new System.Windows.Forms.TextBox();
+            this.ColliderPosX = new System.Windows.Forms.TextBox();
+            this.ColliderSize = new System.Windows.Forms.Label();
             this.Control = new System.Windows.Forms.Button();
+            this.ColliderSizeY = new System.Windows.Forms.TextBox();
+            this.ColliderSizeX = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MapSizeChange = new System.Windows.Forms.Button();
             this.MapScaleY = new System.Windows.Forms.TextBox();
@@ -80,13 +87,71 @@
             // Panel_Render
             // 
             this.Panel_Render.AutoScroll = true;
+            this.Panel_Render.Controls.Add(this.ColliderChange);
+            this.Panel_Render.Controls.Add(this.label1);
+            this.Panel_Render.Controls.Add(this.ColliderPosY);
+            this.Panel_Render.Controls.Add(this.ColliderPosX);
+            this.Panel_Render.Controls.Add(this.ColliderSize);
             this.Panel_Render.Controls.Add(this.Control);
+            this.Panel_Render.Controls.Add(this.ColliderSizeY);
+            this.Panel_Render.Controls.Add(this.ColliderSizeX);
             this.Panel_Render.Location = new System.Drawing.Point(255, 3);
             this.Panel_Render.Name = "Panel_Render";
             this.Panel_Render.Size = new System.Drawing.Size(1002, 674);
             this.Panel_Render.TabIndex = 1;
             this.Panel_Render.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Render_Paint);
             this.Panel_Render.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_Render_MouseDown);
+            // 
+            // ColliderChange
+            // 
+            this.ColliderChange.Location = new System.Drawing.Point(873, 599);
+            this.ColliderChange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ColliderChange.Name = "ColliderChange";
+            this.ColliderChange.Size = new System.Drawing.Size(102, 23);
+            this.ColliderChange.TabIndex = 10;
+            this.ColliderChange.Text = "ColliderChange";
+            this.ColliderChange.UseVisualStyleBackColor = true;
+            this.ColliderChange.Click += new System.EventHandler(this.ColliderChange_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(755, 629);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "ColliderPos :";
+            // 
+            // ColliderPosY
+            // 
+            this.ColliderPosY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ColliderPosY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ColliderPosY.Location = new System.Drawing.Point(923, 626);
+            this.ColliderPosY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ColliderPosY.Name = "ColliderPosY";
+            this.ColliderPosY.Size = new System.Drawing.Size(76, 21);
+            this.ColliderPosY.TabIndex = 14;
+            this.ColliderPosY.TextChanged += new System.EventHandler(this.ColliderPosY_TextChanged);
+            // 
+            // ColliderPosX
+            // 
+            this.ColliderPosX.AcceptsReturn = true;
+            this.ColliderPosX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ColliderPosX.Location = new System.Drawing.Point(842, 626);
+            this.ColliderPosX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ColliderPosX.Name = "ColliderPosX";
+            this.ColliderPosX.Size = new System.Drawing.Size(76, 21);
+            this.ColliderPosX.TabIndex = 13;
+            this.ColliderPosX.TextChanged += new System.EventHandler(this.ColliderPosX_TextChanged);
+            // 
+            // ColliderSize
+            // 
+            this.ColliderSize.AutoSize = true;
+            this.ColliderSize.Location = new System.Drawing.Point(755, 654);
+            this.ColliderSize.Name = "ColliderSize";
+            this.ColliderSize.Size = new System.Drawing.Size(81, 12);
+            this.ColliderSize.TabIndex = 12;
+            this.ColliderSize.Text = "ColliderSize :";
             // 
             // Control
             // 
@@ -97,6 +162,28 @@
             this.Control.Text = "Control";
             this.Control.UseVisualStyleBackColor = true;
             this.Control.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Control_KeyPress);
+            // 
+            // ColliderSizeY
+            // 
+            this.ColliderSizeY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ColliderSizeY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ColliderSizeY.Location = new System.Drawing.Point(923, 651);
+            this.ColliderSizeY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ColliderSizeY.Name = "ColliderSizeY";
+            this.ColliderSizeY.Size = new System.Drawing.Size(76, 21);
+            this.ColliderSizeY.TabIndex = 11;
+            this.ColliderSizeY.TextChanged += new System.EventHandler(this.ColliderSizeY_TextChanged);
+            // 
+            // ColliderSizeX
+            // 
+            this.ColliderSizeX.AcceptsReturn = true;
+            this.ColliderSizeX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ColliderSizeX.Location = new System.Drawing.Point(842, 651);
+            this.ColliderSizeX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ColliderSizeX.Name = "ColliderSizeX";
+            this.ColliderSizeX.Size = new System.Drawing.Size(76, 21);
+            this.ColliderSizeX.TabIndex = 10;
+            this.ColliderSizeX.TextChanged += new System.EventHandler(this.ColliderSizeX_TextChanged);
             // 
             // panel1
             // 
@@ -131,7 +218,7 @@
             // 
             this.MapScaleY.AcceptsReturn = true;
             this.MapScaleY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MapScaleY.Location = new System.Drawing.Point(169, 85);
+            this.MapScaleY.Location = new System.Drawing.Point(169, 82);
             this.MapScaleY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MapScaleY.Name = "MapScaleY";
             this.MapScaleY.Size = new System.Drawing.Size(76, 21);
@@ -142,7 +229,7 @@
             // 
             this.MapScaleX.AcceptsReturn = true;
             this.MapScaleX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MapScaleX.Location = new System.Drawing.Point(88, 85);
+            this.MapScaleX.Location = new System.Drawing.Point(87, 82);
             this.MapScaleX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MapScaleX.Name = "MapScaleX";
             this.MapScaleX.Size = new System.Drawing.Size(76, 21);
@@ -276,14 +363,14 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItem2.Text = "Open (O)";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItem3.Text = "AutoCut (A)";
             // 
             // monsterMenu
@@ -298,14 +385,14 @@
             // openOToolStripMenuItem1
             // 
             this.openOToolStripMenuItem1.Name = "openOToolStripMenuItem1";
-            this.openOToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.openOToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
             this.openOToolStripMenuItem1.Text = "Open (O)";
             this.openOToolStripMenuItem1.Click += new System.EventHandler(this.openOToolStripMenuItem1_Click);
             // 
             // autoCutAToolStripMenuItem
             // 
             this.autoCutAToolStripMenuItem.Name = "autoCutAToolStripMenuItem";
-            this.autoCutAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoCutAToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.autoCutAToolStripMenuItem.Text = "AutoCut (A)";
             // 
             // openFileDialog_Image
@@ -326,6 +413,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Main_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.Panel_Render.ResumeLayout(false);
+            this.Panel_Render.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.Tiles_Panel.ResumeLayout(false);
@@ -363,5 +451,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Label ColliderSize;
+        private System.Windows.Forms.TextBox ColliderSizeY;
+        private System.Windows.Forms.TextBox ColliderSizeX;
+        private System.Windows.Forms.Button ColliderChange;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ColliderPosY;
+        private System.Windows.Forms.TextBox ColliderPosX;
     }
 }

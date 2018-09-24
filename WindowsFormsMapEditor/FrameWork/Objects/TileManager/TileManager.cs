@@ -18,6 +18,14 @@ public class TileManager : Singleton<TileManager>
     private string nowSelectTileState = null;
     private int size = 0;
 
+    private TileSprite nowTileCollider = null;
+
+    private Point colliderPos = new Point(0, 0);
+    private Point colliderSize = new Point(48, 48);
+
+    public Point ColliderPos { get => colliderPos; set => colliderPos = value; }
+    public Point ColliderSize { get => colliderSize; set => colliderSize = value; }
+
     public void Init()
     {
         for(int i = 0; i < 405; i++)
@@ -135,7 +143,7 @@ public class TileManager : Singleton<TileManager>
         foreach(var iter in l_tiles)
         {
             if (iter.IsCollision(iter.Size, iter.GetMousePos()) && nowSelectTile != null)
-                iter.SetSpriteTile(nowSelectTile, nowSelectTileName, nowSelectTileState);
+                nowTileCollider = iter.SetSpriteTile(nowSelectTile, nowSelectTileName, nowSelectTileState);
         }
     }
     public void AddTile(Point position, string tileName, string tileState)
@@ -159,6 +167,20 @@ public class TileManager : Singleton<TileManager>
         foreach (var iter in l_tiles)
         {
             iter.SaveSpriteTiles(path, streamWriter);
+        }
+    }
+
+    public void ChangeColliderTransform(Point pos, Point size)
+    {
+        if (nowTileCollider != null)
+        {
+            Point tempPos = nowTileCollider.Position;
+            tempPos.X += pos.X;
+            tempPos.Y += pos.Y;
+            nowTileCollider.Position = tempPos;
+            nowTileCollider.Size = size;
+            ColliderPos = tempPos;
+            ColliderSize = size;
         }
     }
 }
