@@ -55,6 +55,7 @@ namespace WindowsFormsMapEditor
                     ResourceManager.GetT.GetTexture(monsterPath + "/" + m_files[i], MainGame.GetT.tileDX.Dx_device),
                     monsterPath + "/" + m_files[i], m_files[i]);
             }
+             
         }
 
         private static string[] GetFileNames(string path, string filter)
@@ -187,21 +188,19 @@ namespace WindowsFormsMapEditor
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.Filter = "MSF files (*.MSF)|*.MSF|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = "../../../Image/";
+            openFileDialog.InitialDirectory = ".../../Image/";
 
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamReader streamReader = new StreamReader(openFileDialog.FileName);
-                size = InputManager.GetT.GetStreamPoint(streamReader.ReadLine());
+                mapSize = InputManager.GetT.GetStreamPoint(streamReader.ReadLine());
+                size = new Point(64, 64);
+                TileManager.GetT.ChageMapSize(mapSize, size);
                 TileManager.GetT.SetTileScale(mapSize, size);
 
                 while (!streamReader.EndOfStream)
                 {
-                    string name = "";
-                    string tileState = "";
-                    Point point = InputManager.GetT.GetStreamPoint(streamReader, ref name, ref tileState);
-                    TileManager.GetT.AddTile(point, name, tileState);
-                    name = "";
+                    TileManager.GetT.AddTileToState(streamReader, "../../../Image/Tiles/");
                 }
 
                 streamReader.Close();
@@ -220,7 +219,7 @@ namespace WindowsFormsMapEditor
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName);
-                streamWriter.WriteLine(size + "/");
+                streamWriter.WriteLine(mapSize.X + " " + mapSize.Y);
                 TileManager.GetT.SaveFile(saveFileDialog.FileName + filestyle, streamWriter);
                 streamWriter.Close();
             }

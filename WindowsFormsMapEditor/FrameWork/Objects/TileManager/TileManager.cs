@@ -183,4 +183,59 @@ public class TileManager : Singleton<TileManager>
             ColliderSize = size;
         }
     }
+
+    public void AddTileToState(StreamReader sw, string route)
+    {
+        Point point = new Point(0, 0);
+        string line = sw.ReadLine();
+        string[] result = line.Split(' ');
+
+        if(result[0] == "Collider")
+        {
+            int x, y, width, height;
+            Point size = new Point(0, 0);
+            Int32.TryParse(result[1], out x);
+            Int32.TryParse(result[2], out y);
+            Int32.TryParse(result[3], out width);
+            Int32.TryParse(result[4], out height);
+            point.X = x; point.Y = y;
+            size.X = width; size.Y = height;
+            foreach (var iter in l_tiles)
+            {
+                if (iter.Position == point)
+                {
+                    nowTileCollider = iter.SetSpriteTile("../../../Image/" + "tileCollider.png", "tileCollider.png", "Collider");
+                    nowTileCollider.Size = size;
+                }
+            }
+        }
+        else if(result[0] == "Monster")
+        {
+            int x, y;
+            string tileState = result[0];
+            string tileName = result[1];
+            Int32.TryParse(result[2], out x);
+            Int32.TryParse(result[3], out y);
+            point.X = x; point.Y = y;
+            foreach (var iter in l_tiles)
+            {
+                if (iter.Position == point)
+                    iter.SetSpriteTile("../../../Image/Monster/" + tileName, tileName, tileState);
+            }
+        }
+        else
+        {
+            int x, y;
+            string tileState = result[0];
+            string tileName = result[1];
+            Int32.TryParse(result[2], out x);
+            Int32.TryParse(result[3], out y);
+            point.X = x; point.Y = y;
+            foreach (var iter in l_tiles)
+            {
+                if (iter.Position == point)
+                    iter.SetSpriteTile(route + tileName, tileName, tileState);
+            }
+        }
+    }
 }

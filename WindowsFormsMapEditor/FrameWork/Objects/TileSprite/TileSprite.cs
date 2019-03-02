@@ -36,10 +36,10 @@ public class TileSprite : GameObject
 
     public void InputFile(string path, StreamWriter sw)
     {
-        sw.WriteLine(spriteState + "," + SpriteName.ToString() + "," + transform.position.ToString() + "/");
+        sw.WriteLine(spriteState + " " + SpriteName.ToString() + " " + transform.position.X + " " + transform.position.Y);
     }
     public void ColliderInputFile(StreamWriter sw)
     {
-        sw.WriteLine(spriteState + "," + transform.position.ToString() + "," + Size + "/");
+        sw.WriteLine(spriteState + " " + transform.position.X + " " + transform.position.Y + " " + Size.X + " " +  Size.Y);
     }
 }

@@ -18,37 +18,10 @@ namespace Framework
             int x = 0;
             int y = 0;
 
-            string line = str;
-            for(int i = 0; i < line.Length; i++)
-            {
-                if(string.Compare(line[i].ToString(), "X") == 0)
-                {
-                    string tempPoint = "";
-                    for(int j = i + 2; ; j++)
-                    {
-                        if (string.Compare(line[j].ToString(), ",") == 0)
-                            break;
-                        else
-                            tempPoint = tempPoint + line[j];
-                    }
-                    Int32.TryParse(tempPoint, out x);
-                    point.X = x;
-                }
-                else if (string.Compare(line[i].ToString(), "Y") == 0)
-                {
-                    string tempPoint = "";
-                    for (int j = i + 2; ; j++)
-                    {
-                        if (string.Compare(line[j].ToString(), "}") == 0)
-                            break;
-                        else
-                            tempPoint = tempPoint + line[j];
-                    }
-                    Int32.TryParse(tempPoint, out y);
-                    point.Y = y;
-                }
-                if (string.Compare(line[i].ToString(), "/") == 0) break;
-            }
+            string[] result = str.Split(' ');
+            Int32.TryParse(result[0], out x);
+            Int32.TryParse(result[1], out y);
+            point.X = x; point.Y = y;
             return point;
         }
         public Point GetStreamPoint(StreamReader streamReader, ref string tileName, ref string tileState)
@@ -57,32 +30,9 @@ namespace Framework
 
             string line = streamReader.ReadLine();
             int i = 0;
-            for (i = 0; i < line.Length; i++)
-            {
-                if (string.Compare(line[i].ToString(), ",") == 0)
-                {
+            tileState = line.Split(' ')[0];
+            tileName = line.Split(' ')[1];
 
-                    i++;
-                    break;
-                }
-                else
-                {
-                    tileState += line[i];
-                }
-            }
-            for ( ; i < line.Length; i++)
-            {
-                if(string.Compare(line[i].ToString(), ",") == 0)
-                {
-                    
-                    i++;
-                    break;
-                }
-                else
-                {
-                    tileName += line[i];
-                }
-            }
             string pointLine = "";
             for( ; i < line.Length; i++)
             {
